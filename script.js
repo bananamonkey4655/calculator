@@ -25,3 +25,19 @@ function operate(x, y, operator) {
         ? divide(x, y)
         : "ERROR: Invalid operator";
 }
+
+function listen() {
+    const buttons = document.querySelectorAll(".button-grid button");
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", /*Do this when btn clicked*/ (event) => populateDisplay(event));
+    });
+}
+
+function populateDisplay(event) {
+    const num = event.target.textContent;
+    displayValue = displayValue + num;
+    console.log(displayValue);
+}
+
+let displayValue = '';
+listen();
