@@ -13,16 +13,11 @@ function multiply(x, y) {
 
 function divide(x, y) {
     return y === 0
-        ? "ERROR! Dividing by zero"
+        ? "ERROR!"
         : x / y;
 } 
 
 function operate(x, y, operator) {
-    x = Math.round(x * 10000000) / 10000000;
-    y = Math.round(y * 10000000) / 10000000;
-
-    console.log(x, y);
-
     return operator === 'add'
         ? add(x, y)
         : operator === 'subtract'
@@ -31,13 +26,13 @@ function operate(x, y, operator) {
         ? multiply(x, y)
         : operator === 'divide'
         ? divide(x, y)
-        : "ERROR! Invalid operator";
+        : "ERROR!";
 }
 
 /* Main body of script */
 const numberButtons = document.querySelectorAll(".number-btn");
 const operatorButtons = document.querySelectorAll(".operator-btn");
-const equalButton = document.querySelector(".equal");
+const equalButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear");
 const backspaceButton = document.querySelector(".backspace");
 const mainDisplay = document.querySelector(".main-display");
@@ -88,7 +83,7 @@ function populateDisplay(event) {
     if (operatorChosen) {
         mainDisplay.innerText = '';
         operatorChosen = false;
-    }
+    } 
 
     if (mainDisplayValue === '0') {
         if (input === '.') {
@@ -101,7 +96,7 @@ function populateDisplay(event) {
             mainDisplay.innerText = mainDisplayValue + '.';
         }
     } else {
-        mainDisplay.innerText = mainDisplayValue + input;
+        mainDisplay.innerText = mainDisplay.innerText + input;
     }
 }
 
@@ -116,7 +111,6 @@ function callOperator(event) {
     }
 
     operator = event.target.id;   
-
     operatorChosen = true;
 
     mainDisplay.innerText = '';
@@ -128,10 +122,13 @@ function getSolution() {
     result = operate(Number(leftOperand), Number(rightOperand), operator);
     mainDisplay.innerText = result;
     displayEquation('full');
+
     leftOperand = result;
     rightOperand = '';
+    result = null;
 }
 
+//helper functions
 function displayEquation(type) {
     if (type === 'half') {
         subDisplay.innerText = `${leftOperand} ${getSymbol(operator)}`;
