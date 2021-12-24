@@ -41,9 +41,9 @@ const subDisplay = document.querySelector(".sub-display");
 let leftOperand;
 let rightOperand
 let operator;
-let prevOperator;
 let result;
 let operatorChosen;
+let resultCalculated;
 
 clear();
 listen();
@@ -53,6 +53,7 @@ function clear() {
     rightOperand = '';
     result = null;
     operatorChosen = false;
+    resultCalculated = false;
     mainDisplay.innerText = '0';
     subDisplay.innerText = '';
 }
@@ -77,23 +78,27 @@ function listen() {
 
 function populateDisplay(event) {
     const input = event.target.innerText;
-    const mainDisplayValue = mainDisplay.innerText;
+
+    if (resultCalculated && !operatorChosen) {
+        clear();
+    }
 
     //reset main display
     if (operatorChosen) {
         mainDisplay.innerText = '';
         operatorChosen = false;
+        resultCalculated = false;
     } 
 
-    if (mainDisplayValue === '0') {
+    if (mainDisplay.innerText === '0') {
         if (input === '.') {
             mainDisplay.innerText = '0.';
         } else {
             mainDisplay.innerText = input;
         }
     } else if (input === '.') {
-        if (!mainDisplayValue.includes('.')) {
-            mainDisplay.innerText = mainDisplayValue + '.';
+        if (!mainDisplay.innerText.includes('.')) {
+            mainDisplay.innerText = mainDisplay.innerText + '.';
         }
     } else {
         mainDisplay.innerText = mainDisplay.innerText + input;
@@ -125,7 +130,7 @@ function getSolution() {
 
     leftOperand = result;
     rightOperand = '';
-    result = null;
+    resultCalculated = true;
 }
 
 //helper functions
@@ -145,4 +150,14 @@ function getSymbol(opr) {
         : opr === 'multiply'
         ? '×'
         : '÷';
+}
+
+function debug() {
+    console.log(`leftOperand : ${leftOperand}`);
+    console.log(`rightOperand : ${rightOperand}`);
+    console.log(`operator : ${operator}`);
+    console.log(`result : ${result}`);
+    console.log(`operatorChosen : ${operatorChosen}`);
+    console.log(`resultCalculated : ${resultCalculated}`);
+    console.log('---------------------------------------');
 }

@@ -86,6 +86,10 @@ button {
     padding: 15px 20px;
 }
 
+.operator-btn {
+    background-color: orange;
+}
+
 .zero {
     grid-area: zero;
 }
