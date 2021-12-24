@@ -12,7 +12,10 @@
 </head>
 <body>
     <main class="calculator-grid">
-        <div class="display">12345</div>
+        <div class="display-container">
+            <div class="sub-display"></div>
+            <div class="main-display"></div>
+        </div>
         <ul class="button-grid">
             <li><button class='number-btn'>0</button></li>
             <li><button class='number-btn'>1</button></li>
@@ -23,9 +26,15 @@
             <li><button class='number-btn'>6</button></li>
             <li><button class='number-btn'>7</button></li>
             <li><button class='number-btn'>8</button></li>
-            <li><button class='number-btn'>9</button></li>     
-            <li><button>=</button></li>
-            <li><button>CLEAR</button></li>
+            <li><button class='number-btn'>9</button></li>  
+            <li><button class='number-btn'>.</button></li>  
+            <li><button class='operator-btn' id='add'>&plus;</button></li>
+            <li><button class='operator-btn' id='subtract'>&minus;</button></li>
+            <li><button class='operator-btn' id='multiply'>&times;</button></li>
+            <li><button class='operator-btn' id='divide'>&divide;</button></li>  
+            <li><button class='equal'>=</button></li>
+            <li><button class='backspace'>DELETE</button></li>
+            <li><button class='clear'>CLEAR</button></li>
         </ul>
     </main>
 </body>
